@@ -63,9 +63,15 @@ build() {
     fi
     set -e  # back to failing if any command fails
     meteor build ../build --directory 2>&1 | indent
-    head "Installing App's NPM Dependencies"
-    (cd $APP_SOURCE && npm install 2>&1 | indent)
+    
+    if [ -f $APP_SOURCE/package.json ]; then
+      head "Installing App's NPM Dependencies"
+      (cd $APP_SOURCE && npm install 2>&1 | indent)
+    fi
+    
     cd $BUILD_DIR && rm -rf $APP_SOURCE
+    pwd
+    ls -l .
   )
 }
 
