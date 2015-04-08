@@ -2,11 +2,13 @@
 # USAGE: bin/release <build-dir>
 
 BUILD_DIR=$1
+METEOR_HOME=$BUILD_DIR/.meteor_tool
+METEOR_PATH=$METEOR_HOME/meteor
 
 cat <<-YAML
 ---
 addons:
   - mongolab:sandbox
 default_process_types:
-  web: node build/bundle/main.js
+  web: $METEOR_PATH --port $VCAP_APP_PORT
 YAML
