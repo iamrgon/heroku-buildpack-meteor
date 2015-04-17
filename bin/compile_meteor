@@ -49,7 +49,6 @@ fetch_meteor() {
 build() {
   (
     head "Building Meteor App Bundle"
-    ls -al $APP_SOURCE
     cd $APP_SOURCE
     # can't build with these platforms enabled, it looks like
     set +e  # these next few are allowed to exit nonzero
@@ -70,8 +69,6 @@ build() {
     fi
     
     cd $BUILD_DIR && rm -rf $APP_SOURCE
-    pwd
-    ls -l .
   )
 }
 
